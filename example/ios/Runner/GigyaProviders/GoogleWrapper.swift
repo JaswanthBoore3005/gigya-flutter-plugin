@@ -20,14 +20,14 @@ class GoogleWrapper: ProviderWrapperProtocol {
 
     var googleServerClientID: String? {
         return Bundle.main.infoDictionary?["GoogleServerClientID"] as? String
-    }
+    }()
     
     required init() {
     }
 
     func login(params: [String: Any]? = nil, viewController: UIViewController? = nil,
                completion: @escaping (_ jsonData: [String: Any]?, _ error: String?) -> Void) {
-        guard let clientID = self.clientID, let viewController = viewController else {
+        guard let clientID = self.clientID, let googleServerClientID = self.googleServerClientID , let viewController = viewController else {
             GigyaLogger.log(with: self, message: "clientID not found.")
             return
         }
